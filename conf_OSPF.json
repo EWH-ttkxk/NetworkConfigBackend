@@ -1,0 +1,136 @@
+{
+    "routes": [{
+        "route1": {
+            "key": "A",
+            "name": "RouterA",
+            "type": "router"
+        },
+        "route2": {
+            "key": "B",
+            "name": "RouterB",
+            "type": "router"
+        },
+        "route3": {
+            "key": "C",
+            "name": "RouterC",
+            "type": "router"
+        },
+        "route4": {
+            "key": "D",
+            "name": "Switch1",
+            "type": "switch"
+        },
+        "route5": {
+            "key": "E",
+            "name": "Switch2",
+            "type": "switch"
+        }
+    }],
+
+    "links": [{
+        "link1": {
+            "from": "A",
+            "to": "B",
+            "FromIp": "192.168.1.2/24",
+            "FromNet": "s0/0/0",
+            "ToIp": "192.168.1.1/24",
+            "ToNet": "s0/0/0"
+        },
+        "link2": {
+            "from": "B",
+            "to": "C",
+            "FromIp": "192.168.2.1/24",
+            "FromNet": "s0/0/1",
+            "ToIp": "192.168.2.2",
+            "ToNet": "s0/0/0"
+        },
+        "link3": {
+            "from": "B",
+            "to": "E",
+            "FromIp": "172.16.0.1/24",
+            "FromNet": "f0/0/0"
+        },
+        "link4": {
+            "from": "A",
+            "to": "D",
+            "FromIp": "192.168.3.1/24",
+            "FromNet": "f0/0/0"
+        }
+
+    }],
+
+    "IPs": {
+        "RouterA": [
+            {
+                "port": "s0/0/0",
+                "ip": "192.168.1.2",
+                "subnetMask": "255.255.255.0"
+            },
+            {
+                "port": "f0/0/0",
+                "ip": "172.16.0.1",
+                "subnetMask": "255.255.255.0"
+            },
+            {
+                "port": "loopback0",
+                "ip": "172.16.1.1",
+                "subnetMask": "255.255.255.0"
+            },
+            {
+                "port": "loopback1",
+                "ip": "172.16.2.1",
+                "subnetMask": "255.255.255.0"
+            },
+            {
+                "port": "loopback2",
+                "ip": "172.16.3.1",
+                "subnetMask": "255.255.255.0"
+            }
+        ],
+        "RouterB": [
+            {
+                "port": "s0/0/0",
+                "ip": "192.168.1.1",
+                "subnetMask": "255.255.255.0"
+            },
+            {
+                "port": "s0/0/1",
+                "ip": "192.168.2.1",
+                "subnetMask": "255.255.255.0"
+            },
+            {
+                "port": "f0/0/0",
+                "ip": "192.168.3.1",
+                "subnetMask": "255.255.255.0"
+            }
+        ],
+        "RouterC": [
+            {
+                "port": "s0/0/1",
+                "ip": "192.168.2.2",
+                "subnetMask": "255.255.255.0"
+            }
+        ]
+    },
+
+    "OSPFcommands": {
+        "RouterA":
+        [
+            "network 192.168.1.0 0.0.0.255 area 0",
+            "network 172.16.0.0 0.0.255.255 area 1"
+        ],
+        "RouterB":
+        [
+            "network 192.168.1.0 0.0.0.255 area 0",
+            "network 192.168.2.0 0.0.0.255 area 51"
+        ],
+        "RouterC":
+        [
+            "network 192.168.2.0 0.0.0.255 area 51"
+        ]
+
+    }
+
+
+
+}
