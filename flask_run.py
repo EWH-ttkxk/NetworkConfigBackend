@@ -1,10 +1,9 @@
 from flask import Flask, request
 
-from TelnetClient import tn
 from ACL_operations import ACL_operations
 from OSPF_operations import OSPF_operations
+from service_com import service_com
 from static_operations import static_operations
-from check_config import check_config
 
 app = Flask(__name__)  # __name__当前文件
 
@@ -67,9 +66,27 @@ def OSPF_remove():
 @app.route('/config_check', methods=['POST'])
 def config_check():
     data = request.get_json()
-    check = check_config()
-    result = check.verifyTopology(data)
+    service = service_com()
+    result = service.verifyTopology(data)
     return result
+
+
+# 单个路由器执行命令
+@app.route('/command_exe', methods=['POST'])
+def command_exe():
+    data = request.get_json()
+    service = service_com()
+    res = service.exe_com(data['router'], ['command'])
+    return res
+
+
+# 返回单个路由器信息
+@app.route('/router_information', methods=['POST'])
+def show_information():
+    data = request.get_json()
+    service = service_com()
+    res = service.show_information(data['router'])
+    return res
 
 
 if __name__ == '__main__':
