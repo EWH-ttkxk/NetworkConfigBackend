@@ -1,0 +1,22 @@
+{
+  "case1": {
+    "router": "RouterA",
+    "input": "show ip route",
+    "output": ["1.1.1.0 is directly connected, Serial0/0/0", "2.2.2.0 is directly connected, Loopback0", "3.3.3.0 is directly connected, Serial0/0/1", "192.168.1.0/24 is directly connected, Serial0/0/0", "192.168.2.0/24 is directly connected, Serial0/0/1"]
+  },
+  "case2": {
+    "router": "RouterA",
+    "input": "ping 3.3.3.3 source 2.2.2.2",
+    "output": ["Success rate is 100 percent (5/5)"]
+  },
+  "case3": {
+    "router": "RouterB",
+    "input": "show ip route",
+    "output": ["1.1.1.0 is directly connected, Loopback0", "2.2.2.0 is directly connected, Serial0/0/0", "3.3.3.0 is directly connected, Serial0/0/0", " 192.168.1.0/24 is directly connected, Serial0/0/0"]
+  },
+  "case4": {
+    "router": "RouterC",
+    "input": "show ip route",
+    "output": ["1.1.1.0 is directly connected, Serial0/0/1", "2.2.2.0 is directly connected, Serial0/0/1", " 3.3.3.0 is directly connected, Loopback0", "192.168.2.0/24 is directly connected, Serial0/0/1"]
+    }
+}
