@@ -38,7 +38,7 @@ class TelnetClient:
     def execute_some_command(self, command):
         # 执行命令
         self.tn.write(command.encode('ascii') + b'\n')
-        time.sleep(2)
+        time.sleep(1)
         # 获取命令结果
         command_result = self.tn.read_very_eager().decode('ascii')
 

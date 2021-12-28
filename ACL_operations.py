@@ -1,8 +1,5 @@
 from TelnetClient import TelnetClient
 
-RouterA_ip = '172.16.0.1'
-RouterB_ip = '172.16.0.2'
-RouterC_ip = '172.16.0.3'
 
 
 class ACL_operations:
@@ -10,6 +7,9 @@ class ACL_operations:
     loginIp = {'RouterA': '172.16.0.1',
                'RouterB': '172.16.0.2',
                'RouterC': '172.16.0.3'}
+    routeIp = {'RouterA': '192.168.1.2',
+               'RouterB': '192.168.1.1',
+               'RouterC': '192.168.2.2'}
 
     # 添加ACL条目
     def addACL(self, ACLOptions):
@@ -18,7 +18,7 @@ class ACL_operations:
         commands = []
         if ACLOptions["way"] == "deny":
             commands = ["config terminal",
-                        "access-list " + str(ACLOptions["ACLId"]) + " deny " + self.loginIp[ACLOptions['target']] + " 255.255.255.0",
+                        "access-list " + str(ACLOptions["ACLId"]) + " deny " + self.routeIp[ACLOptions['target']] + " 255.255.255.0",
                         "access-list " + str(ACLOptions["ACLId"]) + " permit any",
                         "int " + ACLOptions["settingInterface"],
                         "ip access-group " + str(ACLOptions["ACLId"]) + " " + str(ACLOptions["direction"]),

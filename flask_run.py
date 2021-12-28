@@ -76,7 +76,7 @@ def config_check():
 def command_exe():
     data = request.get_json()
     service = service_com()
-    res = service.exe_com(data['router'], ['command'])
+    res = service.exe_com(data['router'], data['command'])
     return res
 
 
@@ -90,4 +90,4 @@ def show_information():
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=8000, debug=False)
+    app.run(host='127.0.0.1', port=8000, debug=False)

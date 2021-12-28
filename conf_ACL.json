@@ -1,0 +1,10 @@
+{
+    "ACLOptions": {
+        "source":"RouterA",
+        "target": "RouterB",
+        "direction":"in",
+        "way":"deny",
+        "settingInterface": "s0/0/0",
+        "ACLId":"1"
+    }
+}

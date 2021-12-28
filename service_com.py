@@ -1,4 +1,5 @@
 from TelnetClient import TelnetClient
+import telnetlib
 
 
 class service_com:
@@ -33,8 +34,9 @@ class service_com:
     def exe_com(self, router, com):
         client = TelnetClient()
         client.login_host(self.loginIp[router], 'CISCO')
+
         res = client.execute_some_command(com)
-        client.login_host()
+        client.logout_host()
         return res
 
     # 显示某个路由器信息
@@ -42,5 +44,5 @@ class service_com:
         client = TelnetClient()
         client.login_host(self.loginIp[router], 'CISCO')
         res = client.execute_some_command('show ip route')
-        client.login_host()
+        client.logout_host()
         return res
